@@ -14,41 +14,58 @@ function validatePassword(password1, password2) {
     let hasUpperCase = false;
     let hasLowerCase = false;
 
+    // loops through each charact in the pass
     for (let char of password1) {
-        if (!isNaN(parseInt(char))) {
+        if (!isNaN(parseInt(char))) {               // check if charac is a number
             hasNumber = true;
-        } else if (char === char.toUpperCase()) {
+        } else if (char === char.toUpperCase()) {   // check if charac is uppercase
             hasUpperCase = true;
-        } else if (char === char.toLowerCase()) {
+        } else if (char === char.toLowerCase()) {   // check if charac is lowercase
             hasLowerCase = true;
         }
     }
 
+    // checks if the password meets all the criteria
     if (hasNumber && hasUpperCase && hasLowerCase) {
+        // pass is validj
         return true;
     } else {
+        // pass is invalid
         return false;
     }
 }
 
 function reversePassword(password1, password2) {
+    // validate before reversing
     if (!validatePassword(password1, password2)) {
         return "Invalid Password!";
     }
 
+    // initialize an empty string to store the reversed pass
     let reversedPassword = "";
+    // iterate through each charac of the pass starting from the end
     for (let i = password1.length - 1; i >= 0; i--) {
+        // append the current character to the the reversed pass
         reversedPassword += password1[i];
     }
+    // return the reversed pass
     return reversedPassword;
 }
 
 function storePassword(name, password1, password2) {
+    // validate before storing
     if (!validatePassword(password1, password2)) {
-        return "Invalid Password!";
+        if (password1 !== password2) {
+            return "Wrong Password!";
+        } else if (password1.length < 8) {
+            return "Insufficient Number of Characters!";
+        } else {
+            return "Invalid Password!";
+        }
     }
-
+    // reverse the valid password
     const reversedPassword = reversePassword(password1, password2);
+    // return an object containing the username and reversed pass
     return { name: name, newpassword: reversedPassword };
 }
 
