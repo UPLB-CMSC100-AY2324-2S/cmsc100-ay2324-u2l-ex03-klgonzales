@@ -72,8 +72,8 @@ function storePassword(name, password1, password2) {
 // test cases
 console.log(storePassword("John", "Pass1234", "Pass1234"));            // { name: "John", newpassword: "4321ssaP" }
 console.log(storePassword("John", "pass1234", "pass1234"));            // "Invalid Password!"
-console.log(storePassword("John", "pass1234", "pass1234567"));         // "Invalid Password!"
-console.log(storePassword("John", "pass1", "pass1"));                  // "Invalid Password!"
+console.log(storePassword("John", "pass1234", "pass1234567"));         // "Wrong Password!"
+console.log(storePassword("John", "pass1", "pass1"));                  // "Insufficient Number of Strings"
 
 // test cases
 console.log(validatePassword("helloworld", "hello"));                   // return false
